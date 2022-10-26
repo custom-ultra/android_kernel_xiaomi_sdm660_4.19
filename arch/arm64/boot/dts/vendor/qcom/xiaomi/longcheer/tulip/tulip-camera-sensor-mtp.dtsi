@@ -13,24 +13,6 @@
  */
 
 &soc {
-	led_flash0: qcom,camera-flash@0 {
-		cell-index = <0>;
-		compatible = "qcom,camera-flash";
-		qcom,flash-source = <&pm660l_flash0 &pm660l_flash1>;
-		qcom,torch-source = <&pm660l_torch0 &pm660l_torch1>;
-		qcom,switch-source = <&pm660l_switch0>;
-		status = "ok";
-	};
-
-	led_flash1: qcom,camera-flash@1 {
-		cell-index = <1>;
-		compatible = "qcom,camera-flash";
-		qcom,flash-source = <&pm660l_flash2>;
-		qcom,torch-source = <&pm660l_torch2>;
-		qcom,switch-source = <&pm660l_switch1>;
-		status = "ok";
-	};
-
 	cam_avdd_gpio_regulator: cam_avdd_fixed_regulator {
 		compatible = "regulator-fixed";
 		regulator-name = "cam_avdd_gpio_regulator";
@@ -62,6 +44,19 @@
 };
 
 &cci {
+	/delete-node/ qcom,actuator@0;
+	/delete-node/ qcom,actuator@1;
+	/delete-node/ qcom,actuator@2;
+	/delete-node/ qcom,ois@0;
+	/delete-node/ qcom,tof@29;
+	/delete-node/ qcom,eeprom@0;
+	/delete-node/ qcom,eeprom@1;
+	/delete-node/ qcom,eeprom@2;
+	/delete-node/ qcom,camera@0;
+	/delete-node/ qcom,camera@1;
+	/delete-node/ qcom,camera@2;
+	/delete-node/ qcom,camera@3;
+
 	actuator1: qcom,actuator@1 {
 		cell-index = <1>;
 		reg = <0x1>;
@@ -282,11 +277,13 @@
 		qcom,cam-vreg-max-voltage = <1800000 0>;
 		qcom,cam-vreg-op-mode = <105000 0>;
 		qcom,gpio-no-mux = <0>;
-		pinctrl-names = "cam_default", "cam_suspend";
+		pinctrl-names = "cam_default", "cam_suspend", "eldo3_default";
 		pinctrl-0 = <&cam_sensor_mclk1_active
-				 &cam_sensor_front_active>;
+				 &cam_sensor_front_active
+				 &cam_sensor_eldo3_default>;
 		pinctrl-1 = <&cam_sensor_mclk1_suspend
-				 &cam_sensor_front_suspend>;
+				 &cam_sensor_front_suspend
+				 &cam_sensor_eldo3_default>;
 		gpios = <&tlmm 33 0>,
 			<&tlmm 47 0>,
 			<&pm660l_gpios 3 0>;
@@ -557,11 +554,13 @@
 		qcom,cam-vreg-max-voltage = <1800000 0>;
 		qcom,cam-vreg-op-mode = <105000 0>;
 		qcom,gpio-no-mux = <0>;
-		pinctrl-names = "cam_default", "cam_suspend";
+		pinctrl-names = "cam_default", "cam_suspend", "eldo3_default";
 		pinctrl-0 = <&cam_sensor_mclk1_active
-				 &cam_sensor_front_active>;
+				 &cam_sensor_front_active
+				 &cam_sensor_eldo3_default>;
 		pinctrl-1 = <&cam_sensor_mclk1_suspend
-				 &cam_sensor_front_suspend>;
+				 &cam_sensor_front_suspend
+				 &cam_sensor_eldo3_default>;
 		gpios = <&tlmm 33 0>,
 			<&tlmm 47 0>,
 			<&pm660l_gpios 3 0>;
@@ -876,11 +875,13 @@
 		qcom,cam-vreg-max-voltage = <1800000 0>;
 		qcom,cam-vreg-op-mode = <105000 0>;
 		qcom,gpio-no-mux = <0>;
-		pinctrl-names = "cam_default", "cam_suspend";
+		pinctrl-names = "cam_default", "cam_suspend", "eldo3_default";
 		pinctrl-0 = <&cam_sensor_mclk1_active
-				 &cam_sensor_front_active>;
+				 &cam_sensor_front_active
+				 &cam_sensor_eldo3_default>;
 		pinctrl-1 = <&cam_sensor_mclk1_suspend
-				 &cam_sensor_front_suspend>;
+				 &cam_sensor_front_suspend
+				 &cam_sensor_eldo3_default>;
 		gpios = <&tlmm 33 0>,
 			<&tlmm 47 0>,
 			<&pm660l_gpios 3 0>;
